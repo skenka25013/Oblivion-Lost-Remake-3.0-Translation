@@ -1,0 +1,144 @@
+--hi_flyer 10/05/16
+
+local text_mess_fnc = ""
+local text_mess_add = ""
+local text_mess = ""
+local last_info_in_table = "news_info_unicq_36"
+local time_apdeyta_news = 0
+local timerupnews = math.random(250000,2000000) -- частота апдейта  400000,750000
+local text_phrases = 
+
+{               
+
+{"There's three people in the parking garage. Everybody be careful, looks like the bandits are at it again.", "news_info_unicq_1", "", "nick.garage_tri_bandosa()"},
+
+{"Recently at the roadblock took the courier Barkeep with the goods... Anyway, a tidbit - a box of artifacts, somewhere at the commander of the post lies... So, if anyone is bored with life - can risk it.", "news_info_unicq_2", "", "" },
+
+{"Attention, everyone. To the north of the bridge at the outpost, about 100 meters behind the abandoned APC came across a cluster of electrical... Whoever needs the information, I'll buy you a beer.", "news_info_unicq_3", "", ""  },
+
+{"People, the soldiers have resumed patrolling under the destroyed bridge at the outpost. And I think their sniper is there... I had to get out of there.", "news_info_unicq_4", "I don't think there's anybody there.", ""  },
+
+{"Hello, everybody. The bandits have settled down again at the factory outpost. They're robbing stalkers of their loot... Whoever's in the vicinity of the experienced ones, scare the creatures... I'll be right behind you.", "news_info_unicq_5", "", "nick.garage_tri_bandosa()"  },
+
+{"East of the bridge at the outpost saw a pack of dogs of 20-30 bayonets... So draw conclusions, gentlemen... ", "news_info_unicq_6", "", "" },
+
+{"Gentlemen stalkers. Urgently need Magnet... I pay decent money... They say there's still one on the outpost from the last blowout...", "news_info_unicq_7", "", ""  },
+
+{"...Vaska says there's another marked one, he just left the trader. You know what to do.", "news_info_unicq_8", "I heard they saw the same one on the marshes...", ""  },
+
+{"Someone shot Fedka Cherniy in the garages... I smell bandits again.", "news_info_unicq_9", "", "nick.garage_fedka_bandosi()"  },
+
+{"Don't go to the Dark Valley, zombies are coming from there in droves... Save your ammo, man. It's about time we cleared the valley. What the fuck is Duty looking at?", "news_info_unicq_10", "", "nick.garage_zombi_from_doliana()"},
+
+{"I think I just saw some of Duty's fighters in the Garbage. I wonder who they're after?", "news_info_unicq_11", "", "nick.garage_dolg_from_doliana()"  },
+
+{"...I'm sick, guys, I'm hooked. If anyone near the rusty lake, give me a hand, I won't be rusty... Anyway, I'll try to make it on my own, and then we'll see.", "news_info_unicq_12", "", ""  },
+
+{"Strelok's back! I just heard from the people I know. He's back from the center! So we can, so we'll soon make a big breakthrough to the center, and then we'll see who's who...", "news_info_unicq_13", "", ""  },
+
+{"Hello, everybody. Guys, don't go to the roadblock. Some assholes attacked the patrol... Anyway, it's hot there now... I'm sure there'll be another punitive raid", "news_info_unicq_14", "Don't lie. It's all quiet.", "", ""  },
+
+{"I'm at the Garbage, and there's a lot of blind dogs here. Looks like there's a new pack coming in from the center, so be careful.", "news_info_unicq_15", "", ""  },
+
+{"Everybody be careful. Looks like the military's been here for a long time. Their base of operations is in the institute building. Saw a couple dozen men and a sniper on the roof.", "news_info_unicq_16", "", ""  },
+
+{"I overheard patrolmen saying that the military collects everything they find on the third floor of the institute building. There are those willing to risk it for profit - try to get through.", "news_info_unicq_17", "", "" },
+
+{"I hear there's someone at the factory at night. in the attic. When I was passing by, I saw through a hole in the roof a silhouette, two meters tall... In general, they say that this place is like that... as if bad luck will befall the one who goes there...", "news_info_unicq_18", "", "" },
+
+{"At the research institute I saw a scientist in an orange jumpsuit... by the swamp with some jars... What do they want there? There's a lot of radiation in there.", "news_info_unicq_19", "", "" },
+
+{"Toad's out of food again. or he's out of food. We'll have to chase rats and crows again...", "news_info_unicq_20", "Race - race - race, you'll practice your marksmanship...", "", "" },
+
+{"They say some rookies have settled in Bar... They've been there for a week. Huh, I'll have to check it out.", "news_info_unicq_21", "They're just regular drunks, what can you take from them?", "", "" },
+
+{"What the fuck? I went to my stash to get art, and there's nothing there! Shit, the last blowout must have taken over...", "news_info_unicq_22", "", "" },
+
+{"Hmm, the zombies are so decomposed that a powerful explosion can blow them apart! It's like an anomaly!", "news_info_unicq_23", "", "" },
+
+{"I saw a quad of soldiers coming from the valley side of the dump. everybody be on the lookout.", "news_info_unicq_24", "Get out of there, asshole.", "" },
+
+{"Hey, guys, what's that boarded-up house in Bar? It'd be a good place to settle down.", "news_info_unicq_25", "I heard someone died there a long time ago.", "", "" },
+
+{"In one of the tunnels in the Garbage I noticed something spiky, like an artifact, but I can't reach it by hand...", "news_info_unicq_26", "", "" },
+
+{"Guys, help me out! I went into some complex in the Dark Valley, and the door closed behind me.", "news_info_unicq_27", "Man, I'm sorry about the truth, but.... You're dead.", "", "" },
+
+{"Hey, if anybody's in Dark Valley, get out of my way or you're gonna get hit. A truck just passed me. Looks like another cadaver truck from the North.", "news_info_unicq_28", "Where the hell do they come from? Anybody know?", "", ""},                                        
+
+{"They say some rookie comes to Toad's house at night sometimes, strange... Toad goes to his room in the back, and he stays there all night and doesn't say a word. Heh, I guess he's got the guy so fucked up that he's gone crazy...", "news_info_unicq_29", "I don't know, man. It could be anything.", "", "" },
+
+{"I slept in a dormitory in Bright Ray last night, and out of nowhere, a flesh came right into my dorm. And what's strange, walked around the rooms a bit, smelled, and whispered something to herself... probably I had too much to drink in the bar last night...", "news_info_unicq_30", "", ""},
+
+{"Has anyone seen a headless zombie? I haven't, but they say there are some. How can they even exist?", "news_info_unicq_31", "Go to the lake and see the scientists. You'll find out.", "", ""},
+
+{"Hey, guys, what do we do with the radioactive debris? I heard someone in the north is buying them, but how can I get them? They're glowing!", "news_info_unicq_32", "Buy an R1 capsule from the dealers and put it in there. What a bunch of newbies.", "", ""},
+
+{"Dude, dudes, there's a gangster and a dutyer fighting in the Garbage. you gotta see this. At their roadblock.", "news_info_unicq_33", "Uh-oh. I'm gonna drop my gear in my stash, and I'll be right back.", "", ""},
+
+{"Damn, I got a flat tire on the humpback, and it looks like the transmission's gone, it won't go... I'm gonna have to walk two on my own.", "news_info_unicq_34", "You're a sucker.", "", ""},
+
+{"I saw the Barkeep go into his locked room last night, and he's got a whole arsenal. There's a bunch of guns hanging on the wall. I wish I could get in there.", "news_info_unicq_35", "Don't come to the bar anymore. Security guard.", "", ""},
+
+{"I'll buy a couple cans of jelly. I hear you can harvest it, make a concentrate.", "news_info_unicq_36", "Why don't you go see Witcher? I think he does it.", "", ""}
+
+}
+
+
+function update()
+if db.actor then
+	if time_global() > time_apdeyta_news then
+		time_apdeyta_news = time_global() + timerupnews
+		if device().precache_frame >1 then return end
+  		if nick.is_pda_dead() then
+  			return 
+  		end
+			for key, val in ipairs(text_phrases) do
+				if not has_alife_info(val[2]) then 
+					db.actor:give_info_portion(val[2])
+					text_mess = (val[1])
+					if val[3] ~= nil then
+						text_mess_add = (val[3])
+					end
+					if val[4] ~= nil then
+						text_mess_fnc = (val[4])
+						break
+					end
+				end
+			end
+
+			if has_alife_info(last_info_in_table) then
+				--log1("VSE")
+				return
+			end
+
+	if nick.is_pda_dead() then return end 
+
+	local sactor = alife():actor()
+	local cactor = level.object_by_id(sactor.id)
+	local sactor2 = alife():actor()
+	local cactor2 = level.object_by_id(sactor2.id)
+	local news_text = "%c[255,245,118,54]"..text_mess..""
+	cactor:give_game_news(news_text, "ui\\ui_iconsTotal",Frect():set(486,432,50,50),math.random(1000, 3000),15000)
+	if text_mess_add ~= "" then
+		local bol_var = math.random(1,2)
+		if bol_var == 1 then
+			local news_text_add = "%c[255,245,118,54]"..text_mess_add..""
+			cactor2:give_game_news(news_text_add, "ui\\ui_iconsTotal",Frect():set(486,432,50,50),math.random(8000, 16000),10000)
+		end
+	end
+
+	if text_mess_fnc ~= "" then
+		local func = loadstring(text_mess_fnc)
+		if func then
+			pcall(func)
+		end
+	end
+
+end		
+end
+end
+
+
+
+
